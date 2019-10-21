@@ -21,10 +21,12 @@ img_rows, img_cols = 28, 28
 # инициализируем лист с картинками
 data = []
 
+# i - цифра, которую нужно проверить
 i = 9
 img = Image.open("data/" + str(i) + ".png")
 temp = list(img.getdata())
 temp = np.array(temp)
+
 print(temp.shape)
 print(np.max(temp))
 data.append(temp)
@@ -55,10 +57,10 @@ json_list = []
 # for i in range(10):
 #     x = {"Ожидание": i, "Предположение": values[i], "Вероятностный вектор результата": pred[i]}
 #     json_list.append(x)
-#
+
 # with open("result.json", 'w', encoding='utf-8') as f:
 #     json.dump(json_list, f, ensure_ascii=False, indent=4)
-#
+
 # y_test = []
 # for i in range(10):
 #     y_test.append(i)
