@@ -14,7 +14,7 @@ num_classes = 10
 # epoches - количество эпох обучения
 epochs = 3
 # процентное соотношение тестировочной выборки ко всей выборки
-part_val = 0.17
+part_val = 0.27
 
 # размер входных изображений 28*28
 img_rows, img_cols = 28, 28
@@ -117,3 +117,4 @@ score = model.evaluate(x_test, y_test, verbose=0)
 
 print('Точность:', score[1])
 model.save("model/model.h5")
+
