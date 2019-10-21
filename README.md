@@ -9,7 +9,7 @@
 **Установка зависимостей:**
  - `pip install -r requirements.txt`
  
-Запуск скриптов:
+**Запуск скриптов:**
  - `python3 train.py`
  - `python3 test.py`
  
