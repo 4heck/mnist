@@ -12,9 +12,9 @@ batch_size = 128
 # num_classes - количество классов
 num_classes = 10
 # epoches - количество эпох обучения
-epochs = 2
+epochs = 3
 # процентное соотношение тестировочной выборки ко всей выборки
-part_val = 0.16
+part_val = 0.17
 
 # размер входных изображений 28*28
 img_rows, img_cols = 28, 28
@@ -34,11 +34,13 @@ val_size = int(size * part_val)
 
 # генерация номеров, которые будут использоваться для валидационной выборки
 val_args = []
+
 for x in range(0, val_size):
     i = rnd.randrange(0, size - 1)
     while i in val_args:
         i = rnd.randrange(0, size - 1)
     val_args.append(i)
+
 
 x_test = X[val_args]
 y_test = Y[val_args]
@@ -62,7 +64,7 @@ X = X.astype('float32')
 X /= 255
 print('Матрица X обучающих данных имеет размеры: ', X.shape)
 print(X.shape[0], 'фрагментов данных для обучения')
-print(x_test.shape[0], ' те самые 16% от данных, используются для тестирования')
+print(x_test.shape[0], ' 17% от данных')
 
 # создаем двоичные матрицы классификации
 Y = keras.utils.to_categorical(Y, num_classes)
@@ -112,6 +114,6 @@ model.fit(X, Y,
           validation_data=(x_test, y_test)
           )
 score = model.evaluate(x_test, y_test, verbose=0)
-print('Потеря:', score[0])
+
 print('Точность:', score[1])
 model.save("model/model.h5")

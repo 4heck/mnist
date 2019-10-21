@@ -36,11 +36,9 @@ values = pred.argmax(axis=0).tolist()
 pred = pred.tolist()
 
 json_list = []
+
 for i in range(10):
-    # expected - ожидаемое значение
-    # predicted - более наглядное значение, выданное классификатором
-    # result - вероятностные данные, выданные классификатором
-    x = {"expected": i, "predicted": values[i], "result": pred[i]}
+    x = {"Ожидание": i, "Предположение": values[i], "Вероятностный вектор результата": pred[i]}
     json_list.append(x)
 
 with open("result.json", 'w', encoding='utf-8') as f:
@@ -49,5 +47,6 @@ with open("result.json", 'w', encoding='utf-8') as f:
 y_test = []
 for i in range(10):
     y_test.append(i)
+
 matrix = metrics.confusion_matrix(y_test, values)
 print(matrix)
