@@ -10,18 +10,26 @@ import random as rnd
 
 batch_size = 128
 num_classes = 10
-epochs = 5
+epochs = 2
 part_val = 0.27
 img_rows, img_cols = 28, 28
 
 (x_train, y_train), (x_test, y_test) = mnist.load_data()
 
+
 X = np.concatenate((x_train, x_test), axis=0)
 Y = np.concatenate((y_train, y_test), axis=0)
 
 size = X.shape[0]
+
+indeces = list(range(size))
+rnd.shuffle(indeces)
 val_size = int(size * part_val)
+
 val_args = []
+
+print('____________________')
+print(X.shape[0])
 
 for x in range(0, val_size):
     i = rnd.randrange(0, size - 1)
@@ -47,7 +55,7 @@ X = X.astype('float32')
 X /= 255
 print('Матрица X обучающих данных имеет размеры: ', X.shape)
 print(X.shape[0], 'фрагментов данных для обучения')
-print(x_test.shape[0], ' 17% от данных')
+print(x_test.shape[0]/X.shape[0]*100, ' % от данных')
 
 Y = keras.utils.to_categorical(Y, num_classes)
 y_test = keras.utils.to_categorical(y_test, num_classes)
